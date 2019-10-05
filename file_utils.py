@@ -48,6 +48,7 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
         # result directory
         res_file = dirname + "res_" + filename + '.txt'
         res_img_file = dirname + "res_" + filename + '.jpg'
+        res_cropped_file = dirname + "res_" + filename + "_%d_crop.jpg"
 
         if not os.path.isdir(dirname):
             os.mkdir(dirname)
@@ -70,6 +71,12 @@ def saveResult(img_file, img, boxes, dirname='./result/', verticals=None, texts=
                     font_scale = 0.5
                     cv2.putText(img, "{}".format(texts[i]), (poly[0][0]+1, poly[0][1]+1), font, font_scale, (0, 0, 0), thickness=1)
                     cv2.putText(img, "{}".format(texts[i]), tuple(poly[0]), font, font_scale, (0, 255, 255), thickness=1)
+
+                # Save cropped image
+                left_upper_point = poly[0, :]
+                right_lower_point = poly[2, :]
+                crop_img = img[left_upper_point[1]:right_lower_point[1], left_upper_point[0]:right_lower_point[0], :]
+                cv2.imwrite(res_cropped_file % i, crop_img)
 
         # Save result image
         cv2.imwrite(res_img_file, img)
