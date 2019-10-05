@@ -154,7 +154,7 @@ if __name__ == '__main__':
 
     # load data
     for k, image_path in enumerate(image_list):
-        print("Test image {:d}/{:d}: {:s}".format(k+1, len(image_list), image_path), end='\r')
+        print("Test image %d/%d: %s" % (k+1, len(image_list), image_path))
         image = imgproc.loadImage(image_path)
 
         bboxes, polys, score_text = test_net(net, image, args.text_threshold, args.link_threshold, args.low_text, args.cuda, args.poly, refine_net)
