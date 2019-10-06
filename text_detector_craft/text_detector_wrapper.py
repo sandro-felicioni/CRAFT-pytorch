@@ -147,6 +147,9 @@ class TextDetectorWrapper:
 
         file_utils.saveResult(image_path, image[:,:,::-1], polys, dirname=self.result_folder)
 
+        polys = [np.array(poly).astype(np.int32) for poly in polys]
+        return polys
+
 
 def str2bool(v):
     return v.lower() in ("yes", "y", "true", "t", "1")
