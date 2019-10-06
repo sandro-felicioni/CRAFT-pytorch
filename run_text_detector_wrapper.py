@@ -7,7 +7,7 @@ from text_detector_craft.text_detector_wrapper import TextDetectorWrapper
 if __name__ == '__main__':
 
     # Initialize model
-    arguments = ["--trained_model=./pretrained_models/craft_mlt_25k.pth", "--test_folder=./demo_images", "--cuda=false", "--text_threshold=0.1", "--low_text=0.1", "--link_threshold=0.4"]
+    arguments = ["--trained_model=./pretrained_models/craft_mlt_25k.pth", "--cuda=false", "--text_threshold=0.1", "--low_text=0.1", "--link_threshold=0.4"]
     TextDetectorWrapper = TextDetectorWrapper(arguments)
 
     # Run against test data
